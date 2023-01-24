@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Password Generator</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <section class="box">
+        <h1>Password Generator</h1>
+        <input type="number" class="input" name="" id="passlenth" min="5" max="16" placeholder="Enter Length" />
+        <input type="text" class="input" name="" id="output" readonly />
+        <button id="generator" class="btn" onclick="getPassword()">Generator</button>
+        <button onclick="copyPass()" class="btn copy">Copy</button>
+        <p>Recent Password <span id="recentPass"></span></p>
+    </section>
+    <script>
+        const getPassword =()=>{
+            let chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()_+=-/><.,`~;:'|?";
+            let passlenth = document.getElementById("passlenth").value;
+            let pass = "";
+            let newNum = "";
+            let i = 0;
+            
+            if(passlenth <= 4){
+                document.getElementById('output').value='Please Enter more than 4';
+            }else if(passlenth <= 16){
+                for(i; i<passlenth; i++){
+                    let redomoutput = Math.floor(Math.random() * chars.length);
+                    pass += chars.substring(redomoutput,redomoutput+1);
+                }
+                document.getElementById("output").value = pass;
+                localStorage.setItem("Recent Password", pass);
+                document.getElementById("recentPass").innerHTML = localStorage.getItem("Recent Password");
+            }else{
+                document.getElementById('output').value='Please Enter less than 16';
+            }
+        }
+        const copyPass =()=>{
+            let passValue = document.getElementById("output");
+            passValue.select();
+            document.execCommand("copy");
+        }
+        document.getElementById("recentPass").innerHTML = localStorage.getItem("Recent Password");
+    </script>
+</body>
+</html>
