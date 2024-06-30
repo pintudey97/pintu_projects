@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+    <style>
+        *{box-sizing: border-box;}
+        body{padding: 0; margin: 0; font-family: Arial, Helvetica, sans-serif; background-image: url('https://images.pexels.com/photos/26570911/pexels-photo-26570911/free-photo-of-sea-turtle-in-sea.jpeg'); background-repeat: no-repeat; background-position: top left; background-size: cover; overflow-x: hidden;}
+        nav{ width: 300px; height: 100vh; position: absolute; top: 0; right: -300px; background-color: rgba(255,255,255,0.4); backdrop-filter: blur(20px); padding: 25px;  }
+        .nav-title{ color: #000; font-size: 18px; }
+        .nav-close{  }
+        nav ul{ padding: 0; margin: 0; }
+        nav ul li{list-style-type: none; margin-top: 18px; }
+        nav ul li a{ color: #000; text-decoration: none; transition: .3s; }
+        nav ul li a:hover{ color: #0011ff; }
+        .d-flex{ display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(255,255,255,0.4); padding-bottom: 10px; margin-bottom: 25px; }
+        i{ cursor: pointer; font-size: 25px; }
+        .fa-bars{ color: #fff; position: absolute; top: 25px; right: 25px; }
+        .fa-xmark:hover{ color: #f00; }
+    </style>
+</head>
+<body>
+    <i class="fa-solid fa-bars"></i>
+    <nav>
+        <div class="d-flex">
+            <div class="nav-title">Menu</div>
+            <i class="fa-solid fa-xmark"></i>
+        </div>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Service</a></li>
+            <li><a href="#">Protflio</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        var tl = gsap.timeline()
+        var menu = document.querySelector(".fa-bars")
+        var crose = document.querySelector(".fa-xmark")
+        tl.to("nav",{
+            right:0,
+            duration:0.5
+        })
+        tl.from("nav ul li",{
+            x:150,
+            opacity:0,
+            stagger:0.3,
+            duration:0.7
+        })
+        tl.from(".fa-xmark",{
+            opacity:0,
+            y:-50,
+            duration:0.5
+        })
+
+        tl.pause()
+
+        menu.addEventListener("click",function(){
+            tl.play()
+        })
+        crose.addEventListener("click",function(){
+            tl.reverse()
+        })
+
+    </script>
+</body>
+</html>
